@@ -1,0 +1,1067 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Sakshi & Karan | Wedding Invitation</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800&family=Great+Vibes&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=Marcellus&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --rose-dark:#6b1f32;
+  --rose-accent:#ad5068;
+  --rose-soft:#e69fb0;
+  --plum-ink:#3f101d;
+  --plum-muted:#733e4c;
+  --gold-trim:#b87d3b;
+  --card-glass:rgba(255, 252, 252, 0.90);
+}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html,body{min-height:100%}
+body{font-family:'Montserrat',sans-serif;background:#faecee;color:var(--plum-ink);overflow-x:hidden}
+
+/* =========================================================
+   FULL-SCREEN VICTORIAN FLORAL ARTWORK BACKGROUND
+   ========================================================= */
+#bg{
+  position:fixed;
+  inset:0;
+  z-index:0;
+  overflow:hidden;
+  background:radial-gradient(circle at 50% 35%, #fffbfb 0%, #fbedee 45%, #f5d4da 80%, #ebd0d5 100%);
+}
+#bg svg{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  pointer-events:none;
+}
+/* Optional fallback for your exact image if saved as 'bg.jpg' */
+#bg img.local-bg{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  object-position:center center;
+  mix-blend-mode:multiply;
+  z-index:1;
+}
+
+/* =========================================================
+   ROYAL BLUSH-ROSE ENVELOPE DESIGN
+   ========================================================= */
+#envelope-screen{
+  position:fixed;
+  inset:0;
+  z-index:20;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  padding:20px;
+  transition:opacity 0.9s cubic-bezier(0.4, 0, 0.2, 1), transform 0.9s ease;
+}
+#envelope-screen.hide{opacity:0;transform:scale(1.08);pointer-events:none}
+
+/* Regal Rose-Gold Ganesha Icon */
+.ganesh-top{
+  position:relative;
+  width:clamp(48px,11vw,64px);
+  height:clamp(48px,11vw,64px);
+  margin-bottom:0.35rem;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  filter:drop-shadow(0 4px 12px rgba(107, 31, 50, 0.35));
+}
+.ganesh-top svg{width:100%;height:100%;object-fit:contain}
+
+/* Elegant Shubh Vivah text */
+.hello{
+  font-family:'Cinzel',serif;
+  color:var(--rose-dark);
+  letter-spacing:.32em;
+  font-size:clamp(.95rem,3.4vw,1.25rem);
+  margin-bottom:clamp(1.6rem, 3.8vh, 2.4rem);
+  text-shadow:0 1px 0 #fff, 0 2px 10px rgba(107, 31, 50, 0.25);
+  font-weight:700;
+  text-align:center;
+}
+
+/* Blush-Rose Envelope Wrapper */
+.env{
+  position:relative;
+  width:min(88vw, 365px);
+  aspect-ratio:1.42/1;
+  cursor:pointer;
+  perspective:1000px;
+  filter:drop-shadow(0 22px 40px rgba(95, 25, 42, 0.25)) drop-shadow(0 0 15px rgba(230, 159, 176, 0.4));
+  animation:float 3.6s ease-in-out infinite;
+  transition:transform 0.3s ease;
+}
+.env:hover{transform:translateY(-4px) scale(1.015)}
+@keyframes float{50%{transform:translateY(-8px)}}
+
+/* Envelope Base */
+.env .body{
+  position:absolute;
+  inset:0;
+  border-radius:14px;
+  background:linear-gradient(145deg, #faecee 0%, #ecd0d5 55%, #dfbcc3 100%);
+  border:2px solid var(--rose-accent);
+  overflow:hidden;
+  box-shadow:inset 0 0 25px rgba(173, 80, 104, 0.18), inset 0 0 0 2px rgba(255,255,255,0.7);
+}
+
+.env .body::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  opacity:0.22;
+  background-image: radial-gradient(var(--rose-dark) 1px, transparent 1px), radial-gradient(var(--rose-dark) 1px, transparent 1px);
+  background-size: 14px 14px;
+  background-position: 0 0, 7px 7px;
+}
+
+.env .body::after{
+  content:"";
+  position:absolute;
+  inset:8px;
+  border:1px solid rgba(173, 80, 104, 0.55);
+  border-radius:10px;
+  pointer-events:none;
+}
+
+.env .pocket-fold{
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+}
+.env .pocket-fold::before{
+  content:"";
+  position:absolute;
+  left:0;right:0;bottom:0;
+  height:58%;
+  background:linear-gradient(0deg, #ddb8bf 0%, #ecd4d8 100%);
+  clip-path:polygon(0 100%, 50% 25%, 100% 100%);
+  border-top:1.5px solid rgba(255,255,255,0.8);
+}
+
+/* Inner Letter Card Preview */
+.env .inner-card{
+  position:absolute;
+  top:12px;
+  left:5%;
+  width:90%;
+  height:88%;
+  background:linear-gradient(180deg, #ffffff 0%, #fff6f7 100%);
+  border-radius:8px;
+  border:1.5px solid rgba(173, 80, 104, 0.5);
+  box-shadow:0 8px 18px rgba(95, 25, 42, 0.18);
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  padding:12px;
+  z-index:2;
+  transition:transform 1.1s cubic-bezier(0.25, 1, 0.5, 1);
+}
+.env .inner-card::before{
+  content:"";
+  position:absolute;
+  inset:5px;
+  border:1px dashed rgba(173, 80, 104, 0.5);
+  border-radius:6px;
+}
+.env .inner-card .card-lead{
+  font-family:'Cinzel',serif;
+  font-size:0.6rem;
+  letter-spacing:2.5px;
+  color:var(--rose-accent);
+  text-transform:uppercase;
+  font-weight:700;
+}
+.env .inner-card .card-names{
+  font-family:'Great Vibes',cursive;
+  font-size:1.85rem;
+  color:var(--rose-dark);
+  line-height:1.1;
+  margin:2px 0 3px;
+}
+.env .inner-card .card-date{
+  font-family:'Cinzel',serif;
+  font-size:0.65rem;
+  letter-spacing:1.8px;
+  color:var(--plum-ink);
+  font-weight:700;
+}
+
+/* Top Triangular Flap */
+.env .flap{
+  position:absolute;
+  left:0;
+  right:0;
+  top:0;
+  height:62%;
+  transform-origin:top;
+  transition:transform 0.85s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index:5;
+  background:linear-gradient(180deg, #8d3148 0%, #732236 85%, #591626 100%);
+  clip-path:polygon(0 0, 100% 0, 50% 100%);
+  filter:drop-shadow(0 6px 10px rgba(70, 15, 28, 0.35));
+}
+.env .flap::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  clip-path:polygon(4px 4px, calc(100% - 4px) 4px, 50% calc(100% - 7px));
+  border-top:1.5px solid #fbdce2;
+  border-left:1px solid rgba(255,255,255,0.45);
+  border-right:1px solid rgba(255,255,255,0.45);
+}
+.env .flap::after{
+  content:"❖";
+  position:absolute;
+  bottom:11px;
+  left:50%;
+  transform:translateX(-50%);
+  color:#fcedb6;
+  font-size:0.85rem;
+  text-shadow:0 0 6px rgba(255,255,255,0.6);
+}
+
+.env.open .flap{
+  transform:rotateX(180deg);
+  z-index:1;
+}
+.env.open .inner-card{
+  transform:translateY(-36px);
+}
+
+/* Rose-Gold Wax Seal */
+.seal{
+  position:absolute;
+  left:50%;
+  top:58%;
+  transform:translate(-50%,-50%);
+  z-index:7;
+  width:64px;
+  height:64px;
+  border-radius:50%;
+  background:radial-gradient(circle at 35% 32%, #fff5f6 0%, #f4cbce 28%, #ad5068 70%, #732236 100%);
+  box-shadow:
+    0 8px 20px rgba(75, 18, 32, 0.4),
+    0 0 14px rgba(244, 203, 206, 0.6),
+    inset 0 2px 4px rgba(255,255,255,0.85),
+    inset 0 -3px 5px rgba(60, 10, 22, 0.45);
+  border:2.5px solid rgba(255,255,255,0.85);
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  color:#3f101d;
+  font-family:'Cinzel',serif;
+  font-weight:800;
+  font-size:0.92rem;
+  letter-spacing:1px;
+  transition:transform 0.4s ease, opacity 0.4s ease;
+  cursor:pointer;
+  text-shadow:0 1px 1px rgba(255,255,255,0.7);
+}
+.seal::before{
+  content:"";
+  position:absolute;
+  inset:4px;
+  border:1px dashed rgba(80, 20, 35, 0.45);
+  border-radius:50%;
+}
+.seal:hover{transform:translate(-50%,-50%) scale(1.08)}
+.env.open .seal{transform:translate(-50%,-50%) scale(0);opacity:0}
+
+.click{
+  margin-top:2.2rem;
+  font-family:'Cinzel',serif;
+  letter-spacing:.32em;
+  text-transform:uppercase;
+  font-size:.85rem;
+  color:var(--rose-dark);
+  text-shadow:0 1px 0 #fff;
+  animation:pulse 1.8s ease-in-out infinite;
+  text-align:center;
+  font-weight:700;
+}
+@keyframes pulse{50%{opacity:.5}}
+
+/* ---------- Invitation Main Container ---------- */
+#invite{
+  position:relative;
+  z-index:10;
+  display:none;
+  min-height:100vh;
+  padding:clamp(60px,12vw,90px) 16px 80px;
+  flex-direction:column;
+  align-items:center;
+  justify-content:flex-start;
+}
+#invite.show{display:flex}
+
+.card{
+  position:relative;
+  width:100%;
+  max-width:440px;
+  text-align:center;
+  padding:2.8rem 1.6rem 2.5rem;
+  border-radius:200px 200px 24px 24px;
+  background:var(--card-glass);
+  backdrop-filter:blur(8px);
+  color:var(--plum-ink);
+  border:2.5px solid var(--rose-accent);
+  box-shadow:0 0 0 6px rgba(245, 212, 218, 0.65), 0 25px 50px rgba(107, 31, 50, 0.15);
+  opacity:0;
+  transform:translateY(40px) scale(.96);
+  animation:rise 1.2s .1s ease forwards;
+}
+@keyframes rise{to{opacity:1;transform:none}}
+.card::before{
+  content:"";
+  position:absolute;
+  inset:8px;
+  border:1px solid rgba(173, 80, 104, 0.45);
+  border-radius:192px 192px 16px 16px;
+  pointer-events:none;
+}
+.om{font-size:2.2rem;color:var(--rose-accent);margin-top:.7rem;line-height:1}
+.shloka{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.02rem;color:var(--plum-muted);margin:.35rem 0 1rem;font-weight:600}
+.lead{font-family:'Cinzel',serif;font-size:.72rem;letter-spacing:.3em;text-transform:uppercase;color:var(--rose-dark);font-weight:700}
+.sub{font-size:.7rem;letter-spacing:.25em;text-transform:uppercase;color:var(--plum-muted);margin:.35rem 0 .8rem}
+.name{font-family:'Great Vibes',cursive;font-size:clamp(3.5rem,15vw,4.8rem);line-height:1.05;color:var(--rose-dark);font-weight:400}
+.amp{font-family:'Great Vibes',cursive;font-size:2.4rem;color:var(--rose-accent);display:block;margin:-4px 0}
+.divider{display:flex;align-items:center;justify-content:center;gap:10px;margin:1.3rem auto;color:var(--rose-accent);width:80%}
+.divider::before,.divider::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,transparent,var(--rose-accent))}
+.divider::after{transform:scaleX(-1)}
+.date{font-family:'Cinzel',serif;font-weight:700;letter-spacing:.15em;font-size:1rem;color:var(--rose-dark)}
+.time{font-size:.82rem;letter-spacing:.18em;color:var(--plum-muted);margin-top:.45rem;font-weight:600;text-transform:uppercase}
+
+.cd-title{font-family:'Cinzel',serif;font-size:.72rem;letter-spacing:.25em;text-transform:uppercase;color:var(--rose-dark);margin:1.8rem 0 .75rem;font-weight:700}
+.cd{display:flex;justify-content:center;gap:8px}
+.cd div{
+  min-width:62px;
+  padding:.65rem .3rem;
+  border-radius:12px;
+  background:linear-gradient(180deg,#8d3148,#6b1f32);
+  color:#fff;
+  border:1px solid #c9798e;
+  box-shadow:0 4px 12px rgba(107, 31, 50, 0.22);
+}
+.cd b{display:block;font-family:'Cinzel',serif;font-size:1.45rem;line-height:1.1;color:#fff}
+.cd span{font-size:.56rem;letter-spacing:.15em;text-transform:uppercase;color:#ffd8e0}
+
+.btns{display:flex;flex-direction:column;gap:12px;max-width:290px;margin:1.9rem auto 0}
+.btn{
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  font-family:'Montserrat',sans-serif;font-weight:700;font-size:.85rem;letter-spacing:.12em;text-transform:uppercase;
+  text-decoration:none;color:#fff;
+  background:linear-gradient(180deg,#8d3148,#6b1f32);
+  border:1px solid #c8768a;border-radius:50px;padding:.85rem 1.2rem;cursor:pointer;
+  box-shadow:0 6px 16px rgba(107, 31, 50, 0.22),inset 0 1px 1px rgba(255,255,255,.3);transition:.2s;
+}
+.btn small{font-size:.7rem;font-weight:500;letter-spacing:.04em;text-transform:none;color:#ffe2e8}
+.btn:hover{transform:translateY(-2px)}
+.btn.gold{background:linear-gradient(135deg,#b8576f,#d68598 50%,#9e3a52);color:#fff;border:none}
+
+/* ---------- TIMELINE TRACK & AESTHETIC BOXES ---------- */
+.timeline-section{
+  width:100%;
+  max-width:440px;
+  margin-top:3rem;
+  text-align:center;
+}
+.timeline-header{margin-bottom:2.2rem}
+.timeline-sub{
+  font-family:'Cinzel',serif;
+  font-size:.74rem;
+  letter-spacing:.3em;
+  text-transform:uppercase;
+  color:var(--rose-dark);
+  font-weight:700;
+}
+.timeline-title{
+  font-family:'Great Vibes',cursive;
+  font-size:3rem;
+  color:var(--rose-dark);
+  margin-top:.2rem;
+}
+.timeline-quote{
+  font-family:'Cormorant Garamond',serif;
+  font-style:italic;
+  font-size:1.05rem;
+  color:var(--plum-muted);
+  opacity:.95;
+  padding:0 15px;
+  margin-top:.4rem;
+  line-height:1.45;
+}
+.timeline-track-wrapper{
+  position:relative;
+  padding-left:36px;
+  text-align:left;
+}
+/* Vertical track line */
+.timeline-track-wrapper::before{
+  content:'';
+  position:absolute;
+  top:30px;
+  bottom:40px;
+  left:13px;
+  width:3px;
+  background:linear-gradient(180deg,#e8a7b5 0%,#ad5068 50%,#8d3148 100%);
+  border-radius:3px;
+  box-shadow:0 0 10px rgba(173, 80, 104, 0.4);
+}
+
+.event-card{
+  position:relative;
+  border-radius:28px;
+  padding:24px 22px 22px;
+  margin-bottom:24px;
+  box-shadow:0 10px 25px rgba(107, 31, 50, 0.08);
+  overflow:hidden;
+  backdrop-filter:blur(6px);
+}
+
+.event-card::before{
+  content:'';
+  position:absolute;
+  top:28px;
+  left:-32px;
+  width:18px;
+  height:18px;
+  border-radius:50%;
+  background:#fff;
+  border:3.5px solid var(--rose-accent);
+  box-shadow:0 0 0 3px rgba(173, 80, 104, 0.3);
+  z-index:5;
+}
+
+.event-card .corner-accent{
+  position:absolute;
+  width:26px;
+  height:26px;
+  pointer-events:none;
+  opacity:0.75;
+}
+.event-card .ca-tl{top:10px;left:10px;border-top:1.5px solid currentColor;border-left:1.5px solid currentColor;border-top-left-radius:18px}
+.event-card .ca-tr{top:10px;right:10px;border-top:1.5px solid currentColor;border-right:1.5px solid currentColor;border-top-right-radius:18px}
+.event-card .ca-bl{bottom:10px;left:10px;border-bottom:1.5px solid currentColor;border-left:1.5px solid currentColor;border-bottom-left-radius:18px}
+.event-card .ca-br{bottom:10px;right:10px;border-bottom:1.5px solid currentColor;border-right:1.5px solid currentColor;border-bottom-right-radius:18px}
+
+/* Pastel Theme Card Variations */
+.event-card.theme-haldi{
+  background:linear-gradient(180deg, rgba(255, 253, 242, 0.92) 0%, rgba(253, 248, 226, 0.94) 100%);
+  border:1.5px solid #dfc776;
+  color:#b08d29;
+}
+.event-card.theme-mehndi{
+  background:linear-gradient(180deg, rgba(247, 251, 245, 0.92) 0%, rgba(236, 247, 234, 0.94) 100%);
+  border:1.5px solid #a3d19a;
+  color:#529146;
+}
+.event-card.theme-sangeet{
+  background:linear-gradient(180deg, rgba(250, 245, 252, 0.92) 0%, rgba(244, 233, 247, 0.94) 100%);
+  border:1.5px solid #c9a7df;
+  color:#874fae;
+}
+.event-card.theme-ring{
+  background:linear-gradient(180deg, rgba(245, 249, 252, 0.92) 0%, rgba(233, 242, 248, 0.94) 100%);
+  border:1.5px solid #a1c6df;
+  color:#4f81a7;
+}
+.event-card.theme-wedding{
+  background:linear-gradient(180deg, rgba(255, 246, 248, 0.92) 0%, rgba(252, 233, 238, 0.94) 100%);
+  border:1.5px solid #dd94a3;
+  color:#b0465e;
+}
+
+.event-tag{
+  display:inline-block;
+  font-size:.65rem;
+  padding:5px 15px;
+  border-radius:20px;
+  letter-spacing:1.8px;
+  font-weight:700;
+  margin-bottom:10px;
+  text-transform:uppercase;
+  box-shadow:0 1px 3px rgba(0,0,0,0.04);
+}
+.theme-haldi .event-tag{background:#faecc0;color:#7e6113}
+.theme-mehndi .event-tag{background:#d8eed3;color:#2e6423}
+.theme-sangeet .event-tag{background:#eedaf7;color:#5c2482}
+.theme-ring .event-tag{background:#d7e7f4;color:#27567c}
+.theme-wedding .event-tag{background:#f8cdd6;color:#7c1f34}
+
+.main-event-ribbon{
+  position:absolute;
+  top:0;
+  right:16px;
+  background:#8d3148;
+  color:#fff;
+  font-size:0.58rem;
+  font-weight:700;
+  letter-spacing:1.8px;
+  text-transform:uppercase;
+  padding:5px 14px 6px;
+  border-radius:0 0 10px 10px;
+  box-shadow:0 3px 6px rgba(107, 31, 50, 0.2);
+}
+
+.event-card h3{
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.85rem;
+  color:var(--plum-ink);
+  margin-bottom:6px;
+  font-weight:600;
+  letter-spacing:0.5px;
+}
+.event-card .meta-text{
+  font-size:.85rem;
+  color:var(--plum-muted);
+  line-height:1.75;
+}
+.event-card .event-date{
+  font-family:'Montserrat',sans-serif;
+  font-size:.76rem;
+  letter-spacing:2.2px;
+  color:var(--rose-dark);
+  font-weight:700;
+  text-transform:uppercase;
+  display:block;
+  margin-bottom:2px;
+}
+.venue-link{
+  display:inline-flex;
+  align-items:center;
+  gap:4px;
+  color:var(--rose-dark);
+  font-weight:700;
+  font-size:.84rem;
+  text-decoration:none;
+  border-bottom:1.5px solid var(--rose-accent);
+  padding-bottom:1px;
+  transition:opacity .2s;
+}
+.venue-link:hover{opacity:.75}
+
+/* ---------- Thank You Footer Section ---------- */
+.footer-section{
+  width:100%;
+  max-width:440px;
+  margin-top:2.8rem;
+  padding:36px 20px 24px;
+  text-align:center;
+  border-top:1.5px solid rgba(173, 80, 104, 0.4);
+}
+.footer-section .footer-sub{
+  font-family:'Cinzel',serif;
+  font-size:.72rem;
+  letter-spacing:3.2px;
+  color:var(--rose-dark);
+  text-transform:uppercase;
+  font-weight:700;
+}
+.footer-section .footer-couple{
+  font-family:'Great Vibes',cursive;
+  font-size:3rem;
+  color:var(--rose-dark);
+  margin:4px 0 14px;
+  font-weight:400;
+}
+.footer-section .footer-text{
+  font-size:.88rem;
+  line-height:1.75;
+  color:var(--plum-ink);
+  opacity:.95;
+  padding:0 12px;
+}
+.footer-section .footer-quote{
+  font-family:'Cormorant Garamond',serif;
+  font-style:italic;
+  font-size:1.15rem;
+  color:var(--rose-dark);
+  margin-top:18px;
+  margin-bottom:8px;
+  line-height:1.5;
+}
+.footer-section .footer-tagline{
+  font-family:'Cinzel',serif;
+  font-size:.68rem;
+  color:var(--plum-muted);
+  letter-spacing:3.5px;
+  margin-top:24px;
+  text-transform:uppercase;
+  font-weight:700;
+  opacity:.9;
+}
+
+/* Music + RSVP Modal */
+#musicBtn{
+  position:fixed;right:18px;bottom:18px;z-index:100;width:46px;height:46px;
+  border-radius:50%;border:2px solid #eec0cb;
+  background:linear-gradient(135deg,#8d3148,#6b1f32);
+  color:#fff;font-size:1.1rem;cursor:pointer;
+  display:none;align-items:center;justify-content:center;
+  box-shadow:0 4px 18px rgba(107, 31, 50, 0.35);
+}
+.modal{
+  position:fixed;inset:0;z-index:200;background:rgba(63, 16, 29, 0.55);
+  backdrop-filter:blur(6px);display:none;align-items:center;justify-content:center;padding:1rem;
+}
+.mcard{
+  position:relative;width:100%;max-width:380px;
+  background:linear-gradient(180deg,#fffdfd,#fff1f4);
+  color:var(--plum-ink);border:2px solid var(--rose-accent);border-radius:24px;
+  padding:2.2rem 1.5rem;text-align:center;box-shadow:0 20px 45px rgba(107, 31, 50, 0.25);
+}
+.mcard h3{font-family:'Cinzel',serif;color:var(--rose-dark);margin-bottom:1rem;font-size:1.3rem}
+.x{position:absolute;top:10px;right:16px;font-size:1.6rem;cursor:pointer;color:var(--rose-dark);line-height:1}
+#petals{position:fixed;inset:0;z-index:50;pointer-events:none}
+</style>
+</head>
+<body>
+
+<!-- ============ VECTOR ARTWORK BACKGROUND (Exact match to image) ============ -->
+<div id="bg">
+  <svg viewBox="0 0 1000 1600" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+    <defs>
+      <!-- Watercolor texture filters -->
+      <filter id="paperNoise">
+        <feTurbulence type="fractalNoise" baseFrequency="0.04" numOctaves="4" result="noise"/>
+        <feColorMatrix type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 0.12 0"/>
+        <feComposite in2="SourceGraphic" in="gl" operator="arithmetic" k1="0" k2="1" k3="1" k4="0"/>
+      </filter>
+
+      <!-- Rose Bouquet Petal Gradients -->
+      <linearGradient id="rosePetalDark" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="#e898aa"/>
+        <stop offset="60%" stop-color="#b65069"/>
+        <stop offset="100%" stop-color="#731d33"/>
+      </linearGradient>
+      <linearGradient id="rosePetalLight" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="#fff0f3"/>
+        <stop offset="45%" stop-color="#f5beca"/>
+        <stop offset="100%" stop-color="#cf748a"/>
+      </linearGradient>
+      <linearGradient id="leafGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="#8ba37c"/>
+        <stop offset="100%" stop-color="#4e653f"/>
+      </linearGradient>
+
+      <!-- Single Detailed Blooming Rose Group -->
+      <g id="bloomRose">
+        <!-- Outer petals -->
+        <path d="M-60,0 C-75,-40 -35,-80 0,-70 C35,-80 75,-40 60,0 C75,40 35,80 0,70 C-35,80 -75,40 -60,0 Z" fill="url(#rosePetalLight)" opacity="0.95"/>
+        <path d="M-45,-20 C-60,-50 -10,-65 15,-50 C40,-60 65,-25 50,10 C55,45 15,65 -15,50 C-45,60 -60,15 -45,-20 Z" fill="url(#rosePetalDark)" opacity="0.75"/>
+        <path d="M-30,-15 C-40,-35 -5,-45 10,-35 C25,-45 45,-20 35,5 C40,30 10,45 -10,35 C-30,40 -40,10 -30,-15 Z" fill="url(#rosePetalLight)"/>
+        <!-- Inner curled cup -->
+        <ellipse cx="0" cy="0" rx="18" ry="14" fill="url(#rosePetalDark)"/>
+        <path d="M-8,-6 Q0,-14 8,-6 Q0,2 -8,-6" fill="none" stroke="#fff0f3" stroke-width="2.5"/>
+        <path d="M-12,2 Q0,10 12,2" fill="none" stroke="#fff0f3" stroke-width="2"/>
+      </g>
+
+      <!-- Single Cherry Blossom Flower -->
+      <g id="blossomFlower">
+        <g fill="#fde5eb" stroke="#cf7288" stroke-width="1.2">
+          <circle cx="0" cy="-20" r="14"/>
+          <circle cx="19" cy="-6" r="14"/>
+          <circle cx="12" cy="16" r="14"/>
+          <circle cx="-12" cy="16" r="14"/>
+          <circle cx="-19" cy="-6" r="14"/>
+        </g>
+        <circle cx="0" cy="0" r="7" fill="#be4d67"/>
+        <!-- Golden stamens -->
+        <g stroke="#d88c2b" stroke-width="1.5">
+          <line x1="0" y1="0" x2="0" y2="-9"/>
+          <line x1="0" y1="0" x2="8" y2="-5"/>
+          <line x1="0" y1="0" x2="6" y2="7"/>
+          <line x1="0" y1="0" x2="-6" y2="7"/>
+          <line x1="0" y1="0" x2="-8" y2="-5"/>
+        </g>
+        <circle cx="0" cy="-10" r="1.5" fill="#f5b842"/>
+        <circle cx="9" cy="-6" r="1.5" fill="#f5b842"/>
+        <circle cx="7" cy="8" r="1.5" fill="#f5b842"/>
+        <circle cx="-7" cy="8" r="1.5" fill="#f5b842"/>
+        <circle cx="-9" cy="-6" r="1.5" fill="#f5b842"/>
+      </g>
+    </defs>
+
+    <!-- Watercolor textured wash overlay -->
+    <rect width="1000" height="1600" fill="#fbf0f2"/>
+    <circle cx="200" cy="300" r="450" fill="#f7dbe1" opacity="0.4" filter="blur(60px)"/>
+    <circle cx="850" cy="1350" r="450" fill="#f2cbd3" opacity="0.45" filter="blur(50px)"/>
+    <circle cx="150" cy="1400" r="350" fill="#edd0d7" opacity="0.35" filter="blur(50px)"/>
+
+    <!-- ==================== 1. VICTORIAN EMBOSSED FRAME BORDERS ==================== -->
+    <!-- Outer primary border -->
+    <rect x="36" y="36" width="928" height="1528" rx="14" fill="none" stroke="#aa4d64" stroke-width="3" opacity="0.6"/>
+    <!-- Outer secondary thin border -->
+    <rect x="46" y="46" width="908" height="1508" rx="10" fill="none" stroke="#aa4d64" stroke-width="1.2" opacity="0.5"/>
+    
+    <!-- Inner stepped corner frame -->
+    <path d="M 70,160 L 70,100 C 70,85 85,70 100,70 L 260,70 
+             C 285,70 295,95 320,95 L 680,95 C 705,95 715,70 740,70 L 900,70 
+             C 915,70 930,85 930,100 L 930,160 M 930,1440 L 930,1500 C 930,1515 915,1530 900,1530 L 100,1530 C 85,1530 70,1515 70,1500 L 70,1440" 
+          fill="none" stroke="#aa4d64" stroke-width="2.5" opacity="0.75"/>
+    
+    <!-- Triple inner pinstripe -->
+    <rect x="62" y="62" width="876" height="1476" rx="8" fill="none" stroke="#aa4d64" stroke-width="1" stroke-dasharray="8 6" opacity="0.4"/>
+
+    <!-- ==================== 2. TOP ROCOCO / ACANTHUS SCROLLWORK ==================== -->
+    <!-- Top-Left Baroque Flourish -->
+    <g fill="#aa4d64" opacity="0.68" transform="translate(75, 75)">
+      <path d="M0,0 C30,5 65,25 75,55 C82,75 65,95 48,82 C35,70 42,50 30,35 C20,25 0,15 0,0 Z"/>
+      <path d="M15,10 C45,15 95,45 90,95 C88,110 70,118 60,100 C48,80 70,55 35,30 Z"/>
+      <path d="M0,45 C20,50 50,75 45,115 C42,128 25,125 22,110 C20,90 35,75 10,65 Z"/>
+      <circle cx="85" cy="45" r="4.5"/>
+      <circle cx="102" cy="72" r="3.5"/>
+    </g>
+    <!-- Top-Right Baroque Flourish -->
+    <g fill="#aa4d64" opacity="0.68" transform="translate(925, 75) scale(-1, 1)">
+      <path d="M0,0 C30,5 65,25 75,55 C82,75 65,95 48,82 C35,70 42,50 30,35 C20,25 0,15 0,0 Z"/>
+      <path d="M15,10 C45,15 95,45 90,95 C88,110 70,118 60,100 C48,80 70,55 35,30 Z"/>
+      <path d="M0,45 C20,50 50,75 45,115 C42,128 25,125 22,110 C20,90 35,75 10,65 Z"/>
+      <circle cx="85" cy="45" r="4.5"/>
+      <circle cx="102" cy="72" r="3.5"/>
+    </g>
+
+    <!-- Bottom Horizontal Baroque Runner -->
+    <g stroke="#aa4d64" stroke-width="2" fill="none" opacity="0.6">
+      <line x1="120" y1="1510" x2="880" y2="1510"/>
+      <line x1="140" y1="1516" x2="860" y2="1516" stroke-width="1.2"/>
+      <circle cx="500" cy="1510" r="6" fill="#aa4d64"/>
+      <path d="M480,1510 Q500,1498 520,1510 Q500,1522 480,1510" fill="#aa4d64" opacity="0.5"/>
+    </g>
+
+    <!-- ==================== 3. BOTTOM-LEFT BLOSSOM BRANCH ==================== -->
+    <g transform="translate(20, 1080)">
+      <!-- Woody organic branches -->
+      <path d="M 10,500 Q 60,340 70,240 Q 80,140 160,50 Q 200,5 240,-40" fill="none" stroke="#715443" stroke-width="7" stroke-linecap="round"/>
+      <path d="M 70,240 Q 30,170 30,100" fill="none" stroke="#715443" stroke-width="4.5" stroke-linecap="round"/>
+      <path d="M 115,160 Q 180,140 210,110" fill="none" stroke="#715443" stroke-width="4" stroke-linecap="round"/>
+      <path d="M 160,50 Q 120,0 120,-60" fill="none" stroke="#715443" stroke-width="3" stroke-linecap="round"/>
+
+      <!-- Small buds -->
+      <circle cx="28" cy="85" r="7" fill="#be4d67"/>
+      <circle cx="118" cy="-70" r="6" fill="#be4d67"/>
+      <circle cx="248" cy="-50" r="7.5" fill="#be4d67"/>
+
+      <!-- Full blooming blossoms along branch -->
+      <use href="#blossomFlower" x="35" y="125" transform="scale(1.1)"/>
+      <use href="#blossomFlower" x="70" y="220" transform="scale(1.3)"/>
+      <use href="#blossomFlower" x="120" y="160" transform="scale(1.2)"/>
+      <use href="#blossomFlower" x="165" y="60" transform="scale(1.4)"/>
+      <use href="#blossomFlower" x="210" y="115" transform="scale(1.0)"/>
+      <use href="#blossomFlower" x="200" y="-10" transform="scale(1.25)"/>
+      <use href="#blossomFlower" x="125" y="-20" transform="scale(0.95)"/>
+      <use href="#blossomFlower" x="25" y="270" transform="scale(1.15)"/>
+      <use href="#blossomFlower" x="20" y="380" transform="scale(1.3)"/>
+    </g>
+
+    <!-- ==================== 4. BOTTOM-RIGHT LUSH ROSE BOUQUET ==================== -->
+    <g transform="translate(820, 1340)">
+      <!-- Soft green leaves backdrop -->
+      <path d="M-140,-80 C-190,-120 -180,-190 -110,-170 C-90,-120 -110,-90 -140,-80 Z" fill="url(#leafGrad)"/>
+      <path d="M-60,-170 C-80,-230 -20,-260 20,-220 C20,-170 -20,-160 -60,-170 Z" fill="url(#leafGrad)"/>
+      <path d="M80,-140 C140,-170 180,-120 160,-60 C110,-60 90,-100 80,-140 Z" fill="url(#leafGrad)"/>
+      <path d="M-170,40 C-240,30 -230,-40 -160,-20 C-140,10 -150,30 -170,40 Z" fill="url(#leafGrad)"/>
+      <path d="M70,80 C130,110 160,60 130,10 C90,10 80,50 70,80 Z" fill="url(#leafGrad)"/>
+
+      <!-- Clustered lush blooming roses with different angles -->
+      <use href="#bloomRose" x="-110" y="-100" transform="scale(1.25) rotate(-15)"/>
+      <use href="#bloomRose" x="35" y="-140" transform="scale(1.35) rotate(20)"/>
+      <use href="#bloomRose" x="-20" y="-20" transform="scale(1.5) rotate(5)"/>
+      <use href="#bloomRose" x="-135" y="40" transform="scale(1.15) rotate(-35)"/>
+      <use href="#bloomRose" x="20" y="90" transform="scale(1.3) rotate(30)"/>
+      <use href="#bloomRose" x="110" y="-30" transform="scale(1.1) rotate(45)"/>
+    </g>
+  </svg>
+
+  <!-- If you save your exact WhatsApp photo as 'bg.jpg', it will blend cleanly over here -->
+  <img class="local-bg" src="bg.jpg" alt="" onerror="this.remove()">
+</div>
+
+<audio id="song" loop preload="auto" src="wedding-theme.mp3"></audio>
+<button id="musicBtn" onclick="toggleMusic()" aria-label="Toggle music">♪</button>
+<canvas id="petals"></canvas>
+
+<!-- ============ ENVELOPE SCREEN ============ -->
+<section id="envelope-screen">
+  <div class="ganesh-top">
+    <!-- Rose-Gold Ganesha Icon -->
+    <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="gRoseGold" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#df8b9e"/>
+          <stop offset="50%" stop-color="#be687b"/>
+          <stop offset="100%" stop-color="#7a263c"/>
+        </linearGradient>
+      </defs>
+      <!-- Mukut (Crown) -->
+      <path d="M45 12 L55 12 L57 23 L50 26 L43 23 Z" fill="url(#gRoseGold)"/>
+      <path d="M50 4 L50 11" stroke="url(#gRoseGold)" stroke-width="2.8" stroke-linecap="round"/>
+      <circle cx="50" cy="3.5" r="2.2" fill="url(#gRoseGold)"/>
+      <!-- Tilak -->
+      <path d="M48.5 29 Q50 26 51.5 29 Q50 33 48.5 29 Z" fill="url(#gRoseGold)"/>
+      <circle cx="50" cy="36" r="2" fill="url(#gRoseGold)"/>
+      <!-- Left Ear Curve -->
+      <path d="M42 27 C28 29 18 38 18 51 C18 61 26 67 34 67 C36 67 38 66 40 64" stroke="url(#gRoseGold)" stroke-width="4.2" stroke-linecap="round" fill="none"/>
+      <!-- Right Ear Curve -->
+      <path d="M58 27 C72 29 82 38 82 51 C82 61 74 67 66 67 C64 67 62 66 60 64" stroke="url(#gRoseGold)" stroke-width="4.2" stroke-linecap="round" fill="none"/>
+      <!-- Head & Trunk Flow -->
+      <path d="M46 39 C46 54 48 65 52 74 C54 78 58 83 65 83 C71 83 75 78 73 73 C71 68 65 70 64 73" stroke="url(#gRoseGold)" stroke-width="4.5" stroke-linecap="round" fill="none"/>
+      <!-- Dant (Tusk) -->
+      <path d="M43 50 L37 53" stroke="url(#gRoseGold)" stroke-width="3" stroke-linecap="round"/>
+      <!-- Modak -->
+      <circle cx="73" cy="62" r="3.8" fill="url(#gRoseGold)"/>
+    </svg>
+  </div>
+
+  <p class="hello">|| शुभ विवाह ||</p>
+
+  <!-- Blush Rose Envelope -->
+  <div class="env" id="env" onclick="openInvite()">
+    <div class="body">
+      <div class="inner-card">
+        <p class="card-lead">Wedding Invitation</p>
+        <h2 class="card-names">Sakshi &amp; Karan</h2>
+        <p class="card-date">05 December 2026</p>
+      </div>
+      <div class="pocket-fold"></div>
+    </div>
+    
+    <div class="flap"></div>
+    <div class="seal">S&amp;K</div>
+  </div>
+
+  <p class="click">Click to Open</p>
+</section>
+
+<!-- ============ INVITATION ============ -->
+<div id="invite">
+  <main class="card">
+    <div class="om">ॐ</div>
+    <p class="shloka">|| श्री गणेशाय नमः ||</p>
+    <p class="lead">We Invite You To</p>
+    <p class="sub">The Wedding Of</p>
+    <h1 class="name">Sakshi</h1>
+    <span class="amp">&amp;</span>
+    <h1 class="name">Karan</h1>
+    <div class="divider">❖</div>
+    <p class="date">SATURDAY, 05TH DECEMBER 2026</p>
+    <p class="time">07:00 PM • Uttrakhand Bhawan</p>
+
+    <p class="cd-title">Countdown To The Big Day</p>
+    <div class="cd">
+      <div><b id="d">00</b><span>Days</span></div>
+      <div><b id="h">00</b><span>Hours</span></div>
+      <div><b id="m">00</b><span>Minutes</span></div>
+      <div><b id="s">00</b><span>Seconds</span></div>
+    </div>
+
+    <div class="btns">
+      <a class="btn" target="_blank" href="https://maps.app.goo.gl/3kP2Tv4RCf2k5aRW9">Locate Venue<small>(Uttrakhand Bhawan)</small></a>
+      <button class="btn gold" onclick="openModal('rsvp')">RSVP</button>
+    </div>
+  </main>
+
+  <!-- ============ TIMELINE TRACK SECTION ============ -->
+  <section class="timeline-section">
+    <div class="timeline-header">
+      <p class="timeline-sub">Wedding Celebrations</p>
+      <h2 class="timeline-title">Celebration Timeline</h2>
+      <p class="timeline-quote">"Every celebration has its own beautiful story. Join us as we celebrate each cherished moment together."</p>
+    </div>
+
+    <div class="timeline-track-wrapper">
+      <!-- Jashn -E- मेहंदी -->
+      <div class="event-card theme-mehndi">
+        <span class="corner-accent ca-tl"></span>
+        <span class="corner-accent ca-tr"></span>
+        <span class="corner-accent ca-bl"></span>
+        <span class="corner-accent ca-br"></span>
+        
+        <span class="event-tag">JASHN -E- मेहंदी</span>
+        <h3>Jashn -E- मेहंदी</h3>
+        <p class="meta-text">
+          <span class="event-date">02 DECEMBER 2026</span>
+          📍 <a class="venue-link" target="_blank" rel="noopener noreferrer" href="https://maps.app.goo.gl/GhWBBSZCUZq8QpRq6">Residence</a>
+        </p>
+      </div>
+      
+      <!-- Haldi Hues -->
+      <div class="event-card theme-haldi">
+        <span class="corner-accent ca-tl"></span>
+        <span class="corner-accent ca-tr"></span>
+        <span class="corner-accent ca-bl"></span>
+        <span class="corner-accent ca-br"></span>
+        
+        <span class="event-tag">हल्दी HUES</span>
+        <h3>हल्दी Hues</h3>
+        <p class="meta-text">
+          <span class="event-date">04 DECEMBER 2026</span>
+          📍 <a class="venue-link" target="_blank" rel="noopener noreferrer" href="https://maps.app.goo.gl/qi38Sjt2c3KsYCQZ8">Uttrakhand Bhawan</a>
+        </p>
+      </div>
+
+      <!-- Sham -ए- Sangeet -->
+      <div class="event-card theme-sangeet">
+        <span class="corner-accent ca-tl"></span>
+        <span class="corner-accent ca-tr"></span>
+        <span class="corner-accent ca-bl"></span>
+        <span class="corner-accent ca-br"></span>
+        
+        <span class="event-tag">SHAM -ए- SANGEET</span>
+        <h3>Sham -ए- Sangeet</h3>
+        <p class="meta-text">
+          <span class="event-date">04 DECEMBER 2026</span>
+          📍 <a class="venue-link" target="_blank" rel="noopener noreferrer" href="https://maps.app.goo.gl/5XA59WSfTXxXcJU26?g_st=iw">Vishvesharayya Bhavan</a>
+        </p>
+      </div>
+
+      <!-- The Ring Affair -->
+      <div class="event-card theme-ring">
+        <span class="corner-accent ca-tl"></span>
+        <span class="corner-accent ca-tr"></span>
+        <span class="corner-accent ca-bl"></span>
+        <span class="corner-accent ca-br"></span>
+        
+        <span class="event-tag">THE RING AFFAIR</span>
+        <h3>The Ring Affair</h3>
+        <p class="meta-text">
+          <span class="event-date">04 DECEMBER 2026</span>
+          📍 <a class="venue-link" target="_blank" rel="noopener noreferrer" href="https://maps.app.goo.gl/5XA59WSfTXxXcJU26?g_st=iw">Vishvesharayya Bhavan</a>
+        </p>
+      </div>
+
+      <!-- शगना -Di- शाम -->
+      <div class="event-card theme-wedding">
+        <div class="main-event-ribbon">MAIN EVENT</div>
+        <span class="corner-accent ca-tl"></span>
+        <span class="corner-accent ca-tr"></span>
+        <span class="corner-accent ca-bl"></span>
+        <span class="corner-accent ca-br"></span>
+        
+        <span class="event-tag">शगना -DI- शाम</span>
+        <h3>शगना -Di- शाम</h3>
+        <p class="meta-text">
+          <span class="event-date">05 DECEMBER 2026</span>
+          06:30 PM onwards <br>
+          📍 <a class="venue-link" target="_blank" rel="noopener noreferrer" href="https://maps.app.goo.gl/qi38Sjt2c3KsYCQZ8">Uttrakhand Bhawan</a>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ THANK YOU SECTION ============ -->
+  <footer class="footer-section">
+    <p class="footer-sub">Thank You</p>
+    <h2 class="footer-couple">Sakshi &amp; Karan</h2>
+    <p class="footer-text">Together with our families, we sincerely thank you for your love, blessings and gracious presence.</p>
+    <p class="footer-quote">“Every love story is beautiful, but ours is our favourite.”</p>
+    <p class="footer-tagline">SAKSHI &amp; KARAN • 2026</p>
+  </footer>
+</div>
+
+<!-- ============ RSVP MODAL ============ -->
+<div class="modal" id="rsvp" onclick="if(event.target===this)closeModals()">
+  <div class="mcard"><span class="x" onclick="closeModals()">&times;</span>
+    <h3>RSVP</h3>
+    <p style="font-size:.9rem;color:var(--plum-muted);margin-bottom:.4rem">Warm regards from family:</p>
+    <h4 style="font-family:'Cinzel',serif;font-size:1.25rem;color:var(--rose-dark);margin-bottom:1.3rem">Uma Shankar Sanghai</h4>
+    <div style="display:flex;flex-direction:column;gap:10px">
+      <a class="btn" href="tel:+919415075963">Call +91 9415075963</a>
+      <a class="btn gold" target="_blank" href="https://wa.me/919415075963?text=Namaste!%20Confirming%20our%20attendance%20for%20Sakshi%20and%20Karan's%20Wedding.">WhatsApp Message</a>
+    </div>
+  </div>
+</div>
+
+<script>
+const song = document.getElementById('song');
+const mb = document.getElementById('musicBtn');
+let isOpening = false;
+
+function openInvite(){
+  if(isOpening) return;
+  isOpening = true;
+
+  song.play().catch(()=>{});
+  petals();
+
+  document.getElementById('env').classList.add('open');
+
+  // 2.3s Pause to appreciate the opened envelope
+  setTimeout(() => {
+    document.getElementById('envelope-screen').classList.add('hide');
+  }, 2300);
+
+  // Transition to main invitation
+  setTimeout(() => {
+    document.getElementById('envelope-screen').style.display = 'none';
+    document.getElementById('invite').classList.add('show');
+    mb.style.display = 'flex';
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, 3100);
+}
+
+function toggleMusic(){ 
+  if(song.paused){song.play();mb.textContent='♪'}
+  else{song.pause();mb.textContent='✕'} 
+}
+
+function openModal(id){document.getElementById(id).style.display='flex'}
+function closeModals(){document.querySelectorAll('.modal').forEach(m=>m.style.display='none')}
+
+const target=new Date('2026-12-05T19:00:00+05:30').getTime();
+function tick(){
+  const t=target-Date.now(); 
+  if(t<=0)return;
+  const p=n=>String(n).padStart(2,'0');
+  d.textContent=p(Math.floor(t/864e5));
+  h.textContent=p(Math.floor(t%864e5/36e5));
+  m.textContent=p(Math.floor(t%36e5/6e4));
+  s.textContent=p(Math.floor(t%6e4/1e3));
+}
+setInterval(tick,1000);tick();
+
+function petals(){
+  const c=document.getElementById('petals'),x=c.getContext('2d');
+  const fit=()=>{c.width=innerWidth;c.height=innerHeight};fit();addEventListener('resize',fit);
+  const cols=[['#e89dae','#f8cfd7'],['#f5c2cd','#fae4e9'],['#be687b','#df95a5']];
+  const P=Array.from({length:32},()=>({
+    x:Math.random()*c.width,
+    y:-Math.random()*c.height,
+    r:Math.random()*7+5,
+    vy:Math.random()*1.3+.6,
+    vx:Math.random()-.5,
+    a:Math.random()*360,
+    s:Math.random()*2-1,
+    c:cols[Math.random()*3|0]
+  }));
+  (function f(){
+    x.clearRect(0,0,c.width,c.height);
+    for(const p of P){
+      p.y+=p.vy;p.x+=p.vx+Math.sin(p.y/40)*.4;p.a+=p.s;
+      x.save();x.translate(p.x,p.y);x.rotate(p.a*Math.PI/180);
+      x.fillStyle=p.c[0];x.beginPath();x.ellipse(0,0,p.r,p.r*.6,0,0,7);x.fill();
+      x.fillStyle=p.c[1];x.beginPath();x.ellipse(0,0,p.r*.5,p.r*.3,0,0,7);x.fill();
+      x.restore();
+      if(p.y>c.height+20){p.y=-20;p.x=Math.random()*c.width}
+    }
+    requestAnimationFrame(f)
+  })();
+}
+</script>
+</body>
+</html>
